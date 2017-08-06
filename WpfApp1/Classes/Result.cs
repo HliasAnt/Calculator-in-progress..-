@@ -8,5 +8,14 @@ namespace WpfApp1
 {
     class Result
     {
+        //store the result
+        double StoreTheResult;
+        public double ResultOfCalculations(double lastResult)
+        {
+            StoreTheResult = lastResult;
+            return StoreTheResult;
+        }
+
+
     }
 }

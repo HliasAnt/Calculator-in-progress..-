@@ -21,11 +21,6 @@ namespace WpfApp1
             return convertTheString;
         }
 
-        public char StoreTheSymbol(char previousSymbol)
-        {
-            return previousSymbol;
-        }
-
         //saves the last result number before the next math
         public double StoreThe2ndNumber(double StoreBoxNumber)
         {

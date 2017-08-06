@@ -25,77 +25,66 @@ namespace WpfApp1
             InitializeComponent();
         }
 
-        StoreNumbers myStoreNumbers = new StoreNumbers();
-        KeepTrackOfCalculations myCalculations = new KeepTrackOfCalculations();
-        DoMaths letsCalculate = new DoMaths();
-        double lastResult;
-
-
-        private void button1_Click(object sender, RoutedEventArgs e)
+        StoreNumbers storeNumbers = new StoreNumbers();
+        KeepTrackOfCalculations keeptrackofCalculations = new KeepTrackOfCalculations();
+        DoMaths doMaths = new DoMaths();
+        string keyPress;
+        double currentNumber;
+        string lastPressedSymbol;
+        string lastPressedValue;
+        bool newEntry = true; // its true only at the start of the program until we do our first calculation
+        
+        //run the checklastchar method to see if its true or false, to clear or not the textblock.
+        private void CheckLastChar()
         {
-
-            DisplayBox.Text += myStoreNumbers.GetTheNumber(1).ToString();
-            myStoreNumbers.StoreTheNumber(DisplayBox.Text);
+            if (keeptrackofCalculations.CheckLastChar(lastPressedValue))
+            {
+                DisplayBox.Text = null;
+            }
         }
 
-        private void button2_Click(object sender, RoutedEventArgs e)
+        //reset all values to defaults
+        private void ClearEverything()
         {
-            DisplayBox.Text += myStoreNumbers.GetTheNumber(2).ToString();
-            myStoreNumbers.StoreTheNumber(DisplayBox.Text);
+            DisplayBox.Text = null;
+            currentNumber = 0;
+            lastPressedSymbol = null;
+            DisplayBox2.Text = null;
+            doMaths.ResetResult();
+            newEntry = true;
+        }
+        //it loads all values,writing the textblocks, call the domaths
+        private void LoadAllValuesAndCalculatate()
+        {
+            DisplayBox2.Text += keeptrackofCalculations.AddCalculationsToStoreBox(DisplayBox.Text);
+            DisplayBox2.Text += " " + keyPress + " ";
+            if (newEntry)
+            {
+                DisplayBox.Text = doMaths.DoCalculations(keyPress, currentNumber).ToString();
+                newEntry = false;
+            }
+            else
+            {
+                DisplayBox.Text = doMaths.DoCalculations(lastPressedSymbol, currentNumber).ToString();
+            }
+            lastPressedSymbol = keyPress;
+            lastPressedValue = keyPress;
         }
 
-        private void button3_Click(object sender, RoutedEventArgs e)
+        //checks and display the button that we clicked
+        private void buttonNumber_Click(object sender, RoutedEventArgs e)
         {
-            DisplayBox.Text += myStoreNumbers.GetTheNumber(3).ToString();
-            myStoreNumbers.StoreTheNumber(DisplayBox.Text);
-        }
-
-        private void button4_Click(object sender, RoutedEventArgs e)
-        {
-            DisplayBox.Text += myStoreNumbers.GetTheNumber(4).ToString();
-            myStoreNumbers.StoreTheNumber(DisplayBox.Text);
-        }
-
-        private void button5_Click(object sender, RoutedEventArgs e)
-        {
-            DisplayBox.Text += myStoreNumbers.GetTheNumber(5).ToString();
-            myStoreNumbers.StoreTheNumber(DisplayBox.Text);
-        }
-
-        private void button6_Click(object sender, RoutedEventArgs e)
-        {
-            DisplayBox.Text += myStoreNumbers.GetTheNumber(6).ToString();
-            myStoreNumbers.StoreTheNumber(DisplayBox.Text);
-        }
-
-        private void button7_Click(object sender, RoutedEventArgs e)
-        {
-            DisplayBox.Text += myStoreNumbers.GetTheNumber(7).ToString();
-            myStoreNumbers.StoreTheNumber(DisplayBox.Text);
-        }
-
-        private void button18_Click(object sender, RoutedEventArgs e)
-        {
-            DisplayBox.Text += myStoreNumbers.GetTheNumber(8).ToString();
-            myStoreNumbers.StoreTheNumber(DisplayBox.Text);
-        }
-
-        private void button9_Click(object sender, RoutedEventArgs e)
-        {
-            DisplayBox.Text += myStoreNumbers.GetTheNumber(9).ToString();
-            myStoreNumbers.StoreTheNumber(DisplayBox.Text);
-        }
-
-        private void button10_Click(object sender, RoutedEventArgs e)
-        {
-            DisplayBox.Text += myStoreNumbers.GetTheNumber(0).ToString();
-            myStoreNumbers.StoreTheNumber(DisplayBox.Text);
+            Button numbersButton = (Button)sender;
+            string buttonValue = numbersButton.Content.ToString();
+            CheckLastChar();
+            lastPressedValue = buttonValue;
+            DisplayBox.Text += storeNumbers.GetTheNumber(double.Parse(buttonValue));
+            currentNumber = storeNumbers.StoreTheNumber(DisplayBox.Text);
         }
 
         private void buttonClear_Click(object sender, RoutedEventArgs e)
         {
-            DisplayBox.Text = null;
-            myStoreNumbers.StoreTheNumber(DisplayBox.Text);
+            ClearEverything();
         }
 
         private void buttonDel_Click(object sender, RoutedEventArgs e)
@@ -103,7 +92,7 @@ namespace WpfApp1
             if (DisplayBox.Text.Length>1)
             {
                 DisplayBox.Text = DisplayBox.Text.Substring(0, DisplayBox.Text.Length - 1);
-                myStoreNumbers.StoreTheNumber(DisplayBox.Text);
+                currentNumber = storeNumbers.StoreTheNumber(DisplayBox.Text);
             }
             else
             {
@@ -111,23 +100,36 @@ namespace WpfApp1
             }
         }
 
-       /* private void buttonPlus_Click(object sender, RoutedEventArgs e)
-        {
-          
-        }*/
 
-        private void buttonDiv_Click(object sender, RoutedEventArgs e)
+        private void buttonSub_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("dasdsa");
+            keyPress = "-";
+            LoadAllValuesAndCalculatate();
         }
 
         private void buttonPlus_Click_1(object sender, RoutedEventArgs e)
         {
+            keyPress = "+";
+            LoadAllValuesAndCalculatate();
+           
+        }
 
-           lastResult = myStoreNumbers.StoreThe2ndNumber(myStoreNumbers.StoreTheNumber(DisplayBox.Text));
-           DisplayBox2.Text += myCalculations.AddCalculationsToStoreBox(DisplayBox.Text) + " +";
-           letsCalculate.DoCalculations('+',lastResult,DisplayBox.Text);
-            
+        private void buttonDiv_Click(object sender, RoutedEventArgs e)
+        {
+            keyPress = "/";
+            LoadAllValuesAndCalculatate();
+
+        }
+
+        private void buttonMulti_Click(object sender, RoutedEventArgs e)
+        {
+            keyPress = "*";
+            LoadAllValuesAndCalculatate();
+        }
+
+        private void buttonResult_Click(object sender, RoutedEventArgs e)
+        {
+            DisplayBox.Text = doMaths.DoCalculations(lastPressedSymbol, currentNumber).ToString();
         }
     }
 }

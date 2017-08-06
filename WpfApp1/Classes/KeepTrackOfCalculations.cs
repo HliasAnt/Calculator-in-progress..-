@@ -13,5 +13,31 @@ namespace WpfApp1
         {
             return keepTrack;
         }
+
+        //check if the last char that we press is a symbol (we do that to clear the textblock after we press a math symbol)
+        bool checkText;
+        public bool CheckLastChar(string keepTrack)
+        {
+            string[] mySymbols = {"+","-","*","/"};
+            
+
+            foreach (string item in mySymbols)
+            {
+                if (keepTrack == item)
+                {
+                    checkText = true;
+                    break;
+                }
+                else
+                {
+                    checkText = false;
+                    
+                }
+            }
+
+            return checkText;
+        }
+
+
     }
 }
