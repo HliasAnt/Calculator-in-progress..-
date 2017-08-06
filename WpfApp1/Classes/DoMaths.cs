@@ -13,7 +13,7 @@ namespace WpfApp1
 
         
         
-        public double DoCalculations(string mySymbol,double currentNumber)
+        public double DoCalculations(string mySymbol,double currentNumber,bool newEntry)
 
         {
             switch (mySymbol) 
@@ -26,15 +26,39 @@ namespace WpfApp1
                 case "-":
                     lastResult = myResult.ResultOfCalculations(lastResult);
                     lastResult -= currentNumber;
-                    return myResult.ResultOfCalculations(lastResult);
+                    if (newEntry)
+                    {
+                        lastResult = Math.Abs(lastResult);
+                    }
+                        return myResult.ResultOfCalculations(lastResult);
+                    
+                    
 
                 case "*":
-                    lastResult = lastResult * currentNumber;
-                    return lastResult;
-                
+                    lastResult = myResult.ResultOfCalculations(lastResult);
+                    if (newEntry)
+                    {
+                        lastResult = currentNumber;
+                    }
+                    else
+                    {
+                        lastResult = lastResult * currentNumber;
+                    }
+                    
+                    return myResult.ResultOfCalculations(lastResult);
+
                 case "/":
-                    lastResult = lastResult / currentNumber;
-                    return lastResult;
+                    lastResult = myResult.ResultOfCalculations(lastResult);
+                    if (newEntry)
+                    {
+                        lastResult = currentNumber;
+                    }
+                    else
+                    {
+                        lastResult = lastResult / currentNumber;
+                    }
+                    return myResult.ResultOfCalculations(lastResult);
+
                 default:
 
                     return currentNumber;

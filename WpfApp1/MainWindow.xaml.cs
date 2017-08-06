@@ -60,12 +60,12 @@ namespace WpfApp1
             DisplayBox2.Text += " " + keyPress + " ";
             if (newEntry)
             {
-                DisplayBox.Text = doMaths.DoCalculations(keyPress, currentNumber).ToString();
+                DisplayBox.Text = doMaths.DoCalculations(keyPress, currentNumber,newEntry).ToString();
                 newEntry = false;
             }
             else
             {
-                DisplayBox.Text = doMaths.DoCalculations(lastPressedSymbol, currentNumber).ToString();
+                DisplayBox.Text = doMaths.DoCalculations(lastPressedSymbol, currentNumber,newEntry).ToString();
             }
             lastPressedSymbol = keyPress;
             lastPressedValue = keyPress;
@@ -129,7 +129,10 @@ namespace WpfApp1
 
         private void buttonResult_Click(object sender, RoutedEventArgs e)
         {
-            DisplayBox.Text = doMaths.DoCalculations(lastPressedSymbol, currentNumber).ToString();
+            DisplayBox2.Text = "";
+            DisplayBox.Text = doMaths.DoCalculations(lastPressedSymbol, currentNumber,newEntry).ToString();
+            currentNumber = storeNumbers.StoreTheNumber(DisplayBox.Text);
+            lastPressedSymbol = "=";
         }
     }
 }
