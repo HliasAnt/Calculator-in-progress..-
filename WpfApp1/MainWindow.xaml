@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="Calculator" Height="550.5" Width="340" Background="#FF1BE0BC" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid Height="170" Margin="21,10,21,0" VerticalAlignment="Top">
-        <TextBlock x:Name="DisplayBox2" Margin="8,10,10,63" TextWrapping="Wrap" Background="White" Cursor="None" IsEnabled="False"/>
-        <TextBlock x:Name="DisplayBox" Margin="8,0,10,10" TextWrapping="Wrap" Text="" Background="#FFF9EDED" FontSize="14" Height="53" VerticalAlignment="Bottom"/>
+        <TextBlock x:Name="DisplayBox2" Margin="8,10,10,63" TextWrapping="Wrap" Background="White" Cursor="None" IsEnabled="False" FontSize="14" FontWeight="SemiBold" TextAlignment="Right"/>
+        <TextBlock x:Name="DisplayBox" Margin="8,0,10,10" TextWrapping="Wrap" Background="#FFF9EDED" FontSize="20" Height="53" VerticalAlignment="Bottom" FontWeight="Bold" TextAlignment="Right"/>
         <Grid Margin="0,0,-3,-320" Height="303" VerticalAlignment="Bottom" Background="#FF1BE0BC" HorizontalAlignment="Right" Width="290">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="72*"/>
@@ -24,10 +24,10 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="buttonDel" Content="DEL" Margin="0,0,10,10" Grid.Column="1" FontSize="14" Click="buttonDel_Click"/>
+            <Button x:Name="buttonDel" Content="DEL" Margin="0,0,10,10" Grid.Column="1" FontSize="14" Click="buttonDel_Click" Background="#FFF06666"/>
             <Button x:Name="buttonPer" Content="%" Margin="0,0,10,10" Grid.Column="2" FontSize="14"/>
             <Button x:Name="buttonDiv" Content="/" Margin="0,0,10,10" Grid.Column="3" FontSize="14" Click="buttonDiv_Click" Grid.ColumnSpan="2"/>
-            <Button x:Name="buttonClean" Content="C" Margin="0,0,10,10" FontSize="14"/>
+            <Button x:Name="buttonClean" Content="+ -&#xD;&#xA;" Margin="0,0,10,10" FontSize="14" Grid.Row="4"/>
             <Button x:Name="button7" Content="7" Margin="0,0,10,10" Grid.Row="1" Background="#FFF7F9F9" FontSize="14" Click="buttonNumber_Click"/>
             <Button x:Name="button2" Content="2" Margin="0,0,10,11" Grid.Row="3" Grid.Column="1" Background="#FFFBFBFB" FontSize="14" Click="buttonNumber_Click"/>
             <Button x:Name="button4" Content="4" Margin="0,0,10,10" Grid.Row="2" Background="#FFF5F9F8" FontSize="14" Click="buttonNumber_Click"/>
@@ -40,10 +40,10 @@
             <Button x:Name="buttonSub" Content="-" Margin="0,0,10,10" Grid.Row="2" Grid.Column="3" FontSize="14" Click="buttonSub_Click" Grid.ColumnSpan="2"/>
             <Button x:Name="buttonPlus" Content="+" Margin="0,1,10,10" Grid.Row="3" Grid.Column="3" FontSize="14" Click="buttonPlus_Click_1" Grid.ColumnSpan="2"/>
             <Button x:Name="button0" Content="0" Margin="0,0,10,10" Grid.Row="4" Grid.Column="1" Background="#FFF9FBFB" FontSize="14" Click="buttonNumber_Click"/>
-            <Button x:Name="buttonDot" Content="." Margin="0,0,10,10" Grid.Row="4" Grid.Column="2" FontSize="14"/>
+            <Button x:Name="buttonDot" Content="," Margin="0,0,10,10" Grid.Row="4" Grid.Column="2" FontSize="14" Click="buttonNumber_Click"/>
             <Button x:Name="buttonResult" Content="=" Margin="0,0,10,10" Grid.Row="4" Grid.Column="3" FontSize="14" Grid.ColumnSpan="2" Click="buttonResult_Click"/>
             <Button x:Name="button1" Content="1" Margin="0,1,10,10" Grid.Row="3" Background="#FFF3F9F8" FontSize="14" Click="buttonNumber_Click"/>
-            <Button x:Name="buttonClear" Content="CLEAR" Margin="0,0,10,10" Grid.Row="4" FontSize="14" Click="buttonClear_Click"/>
+            <Button x:Name="buttonClear" Content="C" Margin="0,0,10,10" FontSize="14" Click="buttonClear_Click" Background="#FFF53939"/>
         </Grid>
     </Grid>
 </Window>

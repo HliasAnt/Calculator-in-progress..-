@@ -78,8 +78,9 @@ namespace WpfApp1
             string buttonValue = numbersButton.Content.ToString();
             CheckLastChar();
             lastPressedValue = buttonValue;
-            DisplayBox.Text += storeNumbers.GetTheNumber(double.Parse(buttonValue));
+            DisplayBox.Text += storeNumbers.GetTheNumber(buttonValue);
             currentNumber = storeNumbers.StoreTheNumber(DisplayBox.Text);
+            
         }
 
         private void buttonClear_Click(object sender, RoutedEventArgs e)
@@ -134,5 +135,7 @@ namespace WpfApp1
             currentNumber = storeNumbers.StoreTheNumber(DisplayBox.Text);
             lastPressedSymbol = "=";
         }
+
+      
     }
 }

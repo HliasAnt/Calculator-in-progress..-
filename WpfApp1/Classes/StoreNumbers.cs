@@ -9,13 +9,14 @@ namespace WpfApp1
     public class StoreNumbers
     {
         //add every number we press on textbox1
-        public double GetTheNumber(double buttonNumber)
+
+        public string GetTheNumber(string buttonNumber)
         {
             return buttonNumber;
         }
 
         //save every time we press a number all the textbox1 to keep track of the total number before the calculation
-       public double StoreTheNumber(string TextBoxNumber)
+        public double StoreTheNumber(string TextBoxNumber)
         {
             double convertTheString = double.Parse(TextBoxNumber);
             return convertTheString;
